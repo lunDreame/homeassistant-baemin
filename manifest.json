@@ -1,0 +1,10 @@
+{
+  "domain": "baemin",
+  "name": "Baemin",
+  "config_flow": true,
+  "documentation": "https://github.com/lunDreame/homeassistant-baemin",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@lunDreame"],
+  "version": "1.0.0"
+}

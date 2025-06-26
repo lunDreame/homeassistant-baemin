@@ -1,0 +1,26 @@
+{
+    "title": "Baemin",
+    "config": {
+        "step": {
+            "user": {
+                "description": "Please select a Baedal Minjok login method. (Currently, only social login is supported.)",
+                "data": {
+                    "login_method": "Login method"
+                }
+            },
+            "kakao_login": {
+                "description": "Paste the URL below into your browser and copy the code= value after logging in.\n {url}",
+                "data": {
+                    "auth_code": "Auth code"
+                }
+            }
+        },
+        "abort": {
+            "single_instance_allowed": "Only a single configuration is allowed"
+        },
+        "error": {
+            "failed_token_issuance": "Failed token issuance",
+            "failed_user_info_retrieval": "Failed user info retrieval"
+        }
+    }
+}

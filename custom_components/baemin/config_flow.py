@@ -10,15 +10,22 @@ from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_URL
 import homeassistant.helpers.config_validation as cv
 
-from .const import _LOGGER, DOMAIN, CONF_LOGIN_METHOD, CONF_AUTH_CODE
+from .const import (
+    LOGGER,
+    DOMAIN,
+    MANUFACTURER,
+    CONF_LOGIN_METHOD,
+    CONF_AUTH_CODE
+)
 from .baemin_api import LoginMethod, BaeminApi
+
 
 class BaeminFlowHandler(ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Baemin."""
 
     VERSION = 1
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the flow."""
         self.api = BaeminApi(self.hass, entry=None)
 
@@ -74,9 +81,18 @@ class BaeminFlowHandler(ConfigFlow, domain=DOMAIN):
                     errors["base"] = "failed_token_issuance"
 
             if not processing_error:
-                await self.async_set_unique_id("")
+                login_data = await self.api.login_to_baemin_mem2(token_data.get("access_token", ""))
+                if login_data is None:
+                    processing_error = True
+                    errors["base"] = "failed_login"
+
+            if not processing_error:
+                await self.async_set_unique_id(login_data.get("Mem_No"))
                 self._abort_if_unique_id_configured()
-                return self.async_create_entry(title="", data=token_data)
+                return self.async_create_entry(
+                    title=f"{login_data.get('Mem_No', user_info['id'])} ({login_data.get('Nick_Nm', MANUFACTURER)})",
+                    data=token_data,
+                )
 
         return self.async_show_form(
             step_id="kakao_login",

@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import logging
 
-_LOGGER = logging.getLogger(__package__)
+LOGGER = logging.getLogger(__package__)
 
 DOMAIN = "baemin"
 MANUFACTURER = "WoowaBrothers"
+MODEL = "Baedal Minjok"
 
 CONF_LOGIN_METHOD = "login_method"
 CONF_AUTH_CODE = "auth_code"

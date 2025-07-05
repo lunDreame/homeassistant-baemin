@@ -20,7 +20,18 @@
         },
         "error": {
             "failed_token_issuance": "Failed token issuance",
-            "failed_user_info_retrieval": "Failed user info retrieval"
+            "failed_user_info_retrieval": "Failed user info retrieval",
+            "failed_login": "Failed login"
+        }
+    },
+    "entity": {
+        "sensor": {
+            "favaddr": {
+                "name": "{title}"
+            },
+            "noraddr": {
+                "name": "{title}"
+            }
         }
     }
 }
